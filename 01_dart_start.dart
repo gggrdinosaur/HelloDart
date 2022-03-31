@@ -1,3 +1,4 @@
+import 'dart:math';  //导入库函数
 //变量：https://dart.cn/samples#variables
 void variable() {
   var name = 'Voyager I';
@@ -12,7 +13,7 @@ void variable() {
   print('name is $name,year is $year,antennaDiameter is $antennaDiameter,flybyObjects is $flybyObjects,image is $image');
 }
 
-//流程控制语句
+//流程控制语句：https://dart.cn/samples#control-flow-statements
 void control(){
   var name = 'Voyager I';
   var year = 2022;
@@ -42,12 +43,28 @@ void control(){
 
 }
 
+//函数：https://dart.cn/samples#functions
+//=> (胖箭头) 简写语法用于仅包含一条语句的函数
+int fibonacci(int n){
+  if (n == 0 || n == 1) return n;
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+//导入
+//使用import可以导入其他库中的API
+//import 'dart:math';
 
 void main(List<String> args) {
   //变量
-  variable();
+  /*variable();
 
   //流程控制语句
-  control();
+  control();*/
+
+  //函数
+  var result = fibonacci(10);
+  print('result is $result');
+
+
 
 }
