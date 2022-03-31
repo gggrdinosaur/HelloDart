@@ -54,6 +54,8 @@ int fibonacci(int n){
 //使用import可以导入其他库中的API
 //import 'dart:math';
 
+//类
+
 void main(List<String> args) {
   //变量
   /*variable();
