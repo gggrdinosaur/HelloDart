@@ -102,6 +102,17 @@ void numbers_collections_strings_and_more(){
   var fullString = sb.toString();
   assert(fullString == 'Use a StringBUffer for efficient string creation.');
 
+  //正则表达式
+  //here is a  regular expression for one or more digits
+  var numbers = RegExp(r'\d+');
+
+  var allCharacters = 'llamas live fifteen to twenty years';
+  var someDigits = 'llamas live 15 to 20 years';
+  
+
+
+
+  
 }
 
 
