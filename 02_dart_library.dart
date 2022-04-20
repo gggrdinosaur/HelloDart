@@ -35,13 +35,13 @@ void numbers_collections_strings_and_more(){
   assert('Never odd or even'.contains('odd'));
 
   //does a string start with another string
-  assert('Never odd or even'.startWith('Never'));
+  assert('Never odd or even'.startsWith('Never'));
 
   //does a string end with another string
-  assert('Never odd or even'.endWith('even'));
+  assert('Never odd or even'.endsWith('even'));
 
   //find the location od a string inside a string
-  assert('Never odd or even'.indexOf('or') == 10)
+  assert('Never odd or even'.indexOf('or') == 10);
 
   //从字符串中提取数据
   //grab a substring
@@ -57,14 +57,14 @@ void numbers_collections_strings_and_more(){
 
   //use split() with an empty string parameter to get
   //a list of all characters (as Strings); good for iterating
-  for ( final char in 'hello'.split()){
+  for ( final char in 'hello'.split('')){
     print(char);
   }
 
   //get all the UTF-16 code units in the string
   //UTF  编码 （https://www.jianshu.com/p/ba7fb4a651c7）
   var codeUnitList = 'Never odd or even'.codeUnits.toList();
-  assert(codeUnits[0] == 78);
+  assert(codeUnitList[0] == 78);
 
   //字母大小写转化
   //土耳其字母表的无点/转换是不正确的,无效
