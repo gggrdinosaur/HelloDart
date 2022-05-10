@@ -1,7 +1,6 @@
-// 命令行程序 （https://dart.dev/tutorials/server/cmdline）
-
 import 'dart:convert';
 import 'dart:io';
+import 'dart:isolate';
 
 import 'package:args/args.dart';
 
@@ -9,23 +8,25 @@ const lineNumber = 'line-number';
 
 void main(List<String> args) {
   exitCode = 0;
-  final parser = ArgParser()..addFlag(lineNumber, negatable: false, abbr: 'n');
+
+  final parser = ArgParser();
+  parser.addFlag(lineNumber, negatable: false, abbr: 'n');
 
   ArgResults argResults = parser.parse(args);
-
-  final paths = argResults.rest; // 剩余的命令行参数
+  final paths = argResults.rest;
 
   dcat(paths, showLineNumbers: argResults[lineNumber] as bool);
+
+  print('done.');
 }
 
 Future<void> dcat(List<String> paths, {bool showLineNumbers = false}) async {
   if (paths.isEmpty) {
     print('type exit to quit.');
     while (true) {
-      stdout.write(
-          '> '); // 这样就不换行了 (https://stackoverflow.com/questions/14073217/print-without-a-newline-in-dart)
+      stdout.write('>>> ');
       String? line = stdin.readLineSync();
-      print('${line}\n');
+      print('$line\n');
 
       if (line?.toLowerCase() == 'exit') {
         print('bye.');
@@ -35,6 +36,7 @@ Future<void> dcat(List<String> paths, {bool showLineNumbers = false}) async {
   } else {
     for (final path in paths) {
       var lineNumber = 1;
+
       final lines = utf8.decoder
           .bind(File(path).openRead())
           .transform(const LineSplitter());
@@ -42,9 +44,10 @@ Future<void> dcat(List<String> paths, {bool showLineNumbers = false}) async {
       try {
         await for (final line in lines) {
           if (showLineNumbers) {
-            stdout.write('${lineNumber++} ');
+            stdout.write('${lineNumber++}  ');
           }
-          stdout.writeln(line);
+
+          print(line);
         }
       } catch (_) {
         await _handleError(path);
@@ -55,7 +58,7 @@ Future<void> dcat(List<String> paths, {bool showLineNumbers = false}) async {
 
 Future<void> _handleError(String path) async {
   if (await FileSystemEntity.isDirectory(path)) {
-    stderr.writeln('Error: $path is a directory.');
+    stderr.writeln('error: $path is a directory');
   } else {
     exitCode = 2;
   }

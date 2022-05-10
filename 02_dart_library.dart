@@ -29,7 +29,7 @@ void numbers_collections_strings_and_more() {
   assert(123.456.toStringAsFixed(2) == '123.46'); //指定小数点右边的数
 
   //specify the number of significant figures
-  assert(1234.56.toStringAsPrecision(2) == '1.2e+2'); //指定字符串中的有效数字的位数
+  assert(123.456.toStringAsPrecision(2) == '1.2e+2'); //指定字符串中的有效数字的位数
   assert(double.parse('1.2e+2') == 120.0);
 
   //从字符串中搜索
@@ -103,7 +103,7 @@ void numbers_collections_strings_and_more() {
     ..write('.'); //书写结束
 
   var fullString = sb.toString();
-  assert(fullString == 'Use a StringBUffer for efficient string creation.');
+  assert(fullString == 'Use a StringBuffer for efficient string creation.');
 
   //正则表达式
   //here is a  regular expression for one or more digits
@@ -158,18 +158,18 @@ void the_lists() {
 
 //Use indexOf() to find the index of an object in a list
 
-// Access a list item by index.
-  assert(fruits[0] == 'apples');
 
-// Find an item in a list.
-  assert(fruits.indexOf('apples') == 0);
-
-//Sort a list using the sort()
   fruits = ['bananas', 'apples', 'oranges'];
 
 // Sort a list.
   fruits.sort((a, b) => a.compareTo(b));
   assert(fruits[0] == 'apples');
+
+  // Access a list item by index.
+  assert(fruits[0] == 'apples');
+
+// Find an item in a list.
+  assert(fruits.indexOf('apples') == 0);
 
   fruits = <String>[];
 
